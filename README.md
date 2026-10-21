@@ -12,6 +12,28 @@ It's built for Wayland desktops, and the installer wires up Hyprland bindings on
 | `SUPER + ALT + R` | Read the highlighted text. Press again to stop. |
 | `SUPER + SHIFT + ALT + R` | Read the clipboard. Press again to stop. |
 
+## Who this is for
+
+Anyone on a Linux Wayland desktop who wants text read aloud without sending it
+to a cloud service: proofreading your own writing, giving your eyes a break on long
+articles, or for accessibility. It's tested on [Omarchy](https://omarchy.org/)
+(Arch + Hyprland) with PipeWire. Other Wayland compositors work too, but you bind
+the keys yourself.
+
+## Read before you run `install.sh`
+
+The installer only touches your user account (no `sudo`), but it does change things:
+
+- **Downloads** about 350 MB of model files from the
+  [kokoro-onnx releases](https://github.com/thewh1teagle/kokoro-onnx/releases) and Python packages from PyPI.
+  `--gpu` adds about 3 GB of CUDA libraries.
+- **Enables a background service** (`kokoro-say.service`) that starts at login and keeps about 600 MB of RAM
+  in use (plus about 0.5 GB of VRAM with `--gpu`).
+- **Edits `~/.config/hypr/bindings.lua`.** It appends two bindings, after saving a timestamped backup.
+  `--no-bind` skips this.
+
+Read `install.sh` first. It's short. `./uninstall.sh` reverses everything it does.
+
 ## How it works
 
 A small user service (`kokoro-say serve`) loads the model once and listens on
@@ -26,7 +48,7 @@ Requirements: `uv`, PipeWire (`pw-play`), `wl-clipboard`, `libnotify`, `curl`.
 
 ```bash
 sudo pacman -S --needed uv pipewire wl-clipboard libnotify curl   # Arch / Omarchy
-git clone <this repo> ~/Work/kokoro-say && cd ~/Work/kokoro-say
+git clone https://github.com/nzkritik/kokoro-say.git && cd kokoro-say
 ./install.sh          # CPU, which is fast enough on any recent machine
 ./install.sh --gpu    # NVIDIA: about 7× faster, uses ~3 GB of CUDA wheels and ~0.5 GB of VRAM
 ```
@@ -60,8 +82,8 @@ kokoro-say voices
 between sentences, CPU or GPU, and the maximum length. After editing it, run
 `systemctl --user restart kokoro-say`.
 
-Good English voices to try: `af_heart` (default), `af_bella`, `bf_emma`,
-`am_fenrir`, `bm_george`. Use `lang = "en-gb"` with the `b*` (British) voices.
+The default is `bf_emma` (British). Other good English voices: `af_heart`, `af_bella`,
+`am_fenrir`, `bm_george`. Set `lang = "en-us"` for the `a*` (American) voices and `en-gb` for `b*`.
 
 ## Troubleshooting
 

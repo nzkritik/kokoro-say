@@ -28,9 +28,9 @@ CONFIG_PATH = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config")) /
 DATA_DIR = Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local" / "share")) / "kokoro-say"
 
 DEFAULTS = {
-    "voice": "af_heart",
+    "voice": "bf_emma",
     "speed": 1.0,
-    "lang": "en-us",
+    "lang": "en-gb",
     "model": str(DATA_DIR / "models" / "kokoro-v1.0.onnx"),
     "voices": str(DATA_DIR / "models" / "voices-v1.0.bin"),
     # "auto" uses CUDA when onnxruntime-gpu can load it, else the CPU.
@@ -288,7 +288,7 @@ def main():
         p.add_argument("source", nargs="?", default="primary", choices=("primary", "clipboard", "stdin"),
                        help="primary = highlighted text (default), clipboard, or stdin")
         p.add_argument("-t", "--text", help="speak this text instead of reading a source")
-        p.add_argument("-v", "--voice", help="voice id, e.g. af_heart, bf_emma (see `voices`)")
+        p.add_argument("-v", "--voice", help="voice id, e.g. bf_emma, af_heart (see `voices`)")
         p.add_argument("-s", "--speed", type=float, help="speech speed, 1.0 is normal")
     sub.add_parser("stop", help="stop speaking")
     sub.add_parser("status", help="show daemon state")

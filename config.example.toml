@@ -3,14 +3,14 @@
 #
 # List voices with `kokoro-say voices`. The prefix is accent + gender:
 #   a = American, b = British; f = female, m = male.
-# Highest rated English voices: af_heart, af_bella, bf_emma, am_fenrir, bm_george.
-voice = "af_heart"
+# Highest rated English voices: bf_emma, af_heart, af_bella, am_fenrir, bm_george.
+voice = "bf_emma"
 
 # 1.0 is normal; 1.15–1.25 suits skimming long articles.
 speed = 1.0
 
 # en-us or en-gb (match the voice's accent).
-lang = "en-us"
+lang = "en-gb"
 
 # Silence inserted between sentences, in seconds.
 sentence_pause = 0.25
