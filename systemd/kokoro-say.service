@@ -1,0 +1,11 @@
+[Unit]
+Description=Kokoro-82M text-to-speech daemon (kokoro-say)
+After=pipewire.service
+
+[Service]
+ExecStart=%h/.local/bin/kokoro-say serve
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target

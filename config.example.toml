@@ -1,0 +1,22 @@
+# kokoro-say settings. Restart after editing:
+#   systemctl --user restart kokoro-say
+#
+# List voices with `kokoro-say voices`. The prefix is accent + gender:
+#   a = American, b = British; f = female, m = male.
+# Highest rated English voices: af_heart, af_bella, bf_emma, am_fenrir, bm_george.
+voice = "af_heart"
+
+# 1.0 is normal; 1.15–1.25 suits skimming long articles.
+speed = 1.0
+
+# en-us or en-gb (match the voice's accent).
+lang = "en-us"
+
+# Silence inserted between sentences, in seconds.
+sentence_pause = 0.25
+
+# "auto" (CUDA if installed with --gpu, else CPU), "CUDAExecutionProvider" or "CPUExecutionProvider".
+provider = "auto"
+
+# Longest text read in one go, so a stray huge selection can't run for an hour.
+max_chars = 20000
